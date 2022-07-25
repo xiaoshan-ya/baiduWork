@@ -6,6 +6,7 @@
 </head>
 <body>
 <P>单向绑定</P>
+<p>通过修改代码中的_data实现</P>
 <div id="app">
     姓名：{{name}}
     <br>
@@ -43,7 +44,6 @@
     <input type="text" v-model="someStr">
     <p>{{ getHello }}</p>
     <p v-html="htmlStr"></p>
-    <button v-on:click="clickBtn">change model</button>
 </div>
 
 <script src="./js/observerJS.js"></script>
