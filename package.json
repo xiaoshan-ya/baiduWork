@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-jest": "^28.1.3",
+    "babel-preset-env": "^1.7.0",
+    "jest-environment-jsdom": "^28.1.3"
+  },
+  "name": "my-package",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "@babel/cli": "^7.18.9",
+    "@babel/core": "^7.18.9",
+    "@babel/preset-env": "^7.18.9",
+    "babel-jest": "^28.1.3",
+    "jest": "^28.1.3"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  }
+}

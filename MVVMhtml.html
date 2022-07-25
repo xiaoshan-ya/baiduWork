@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MVVM</title>
+</head>
+<body>
+<P>单向绑定</P>
+<div id="app">
+    姓名：{{name}}
+    <br>
+    年龄：{{age}}
+</div>
+<script>
+    let el = document.getElementById('app');
+    let template = el.innerHTML;
+    let _data = {
+        name: 'honey',
+        age: 20
+    };
+
+    let data = new Proxy(_data, {
+        set(obj, name, value) {
+            obj[name] = value;
+            render();
+        }
+    });
+
+    render();
+
+    function render() {
+        el.innerHTML = template.replace(/\{\{\w+\}\}/g, str => {
+            str = str.substring(2, str.length - 2);
+            return _data[str];
+        });
+    }
+</script>
+
+<hr>
+
+<P>双向绑定</P>
+<div id="mvvm-app">
+    <input type="text" v-model="someStr">
+    <p>{{ getHello }}</p>
+    <p v-html="htmlStr"></p>
+    <button v-on:click="clickBtn">change model</button>
+</div>
+
+<script src="./js/observerJS.js"></script>
+<script src="./js/watcherJS.js"></script>
+<script src="./js/compileJS.js"></script>
+<script src="./js/mvvmJS.js"></script>
+<script>
+    var vm = new MVVM({
+        el: '#mvvm-app',
+        data: {
+            someStr: 'hello ',
+            className: 'btn',
+        },
+
+        computed: {
+            getHello: function() {
+                return this.someStr;
+            }
+        },
+
+        methods: {
+            clickBtn: function(e) {
+                var randomStrArr = ['childOne', 'childTwo', 'childThree'];
+                this.child.someStr = randomStrArr[parseInt(Math.random() * 3)];
+            }
+        }
+    });
+
+    vm.$watch('child.someStr', function() {
+        console.log(arguments);
+    });
+</script>
+
+</body>
+</html>
